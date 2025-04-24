@@ -1,5 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from . import views
 from .views import *
 
 # Create a router and register our viewsets with it
@@ -24,4 +25,9 @@ router.register(r'user_notifications', UserNotificationViewSet)
 # The API URLs are now determined automatically by the router
 urlpatterns = [
     path('', include(router.urls)),
+    path('register/', views.register_user, name='register_user'),
+    path('profile/complete/', views.complete_profile, name='complete-profile'),
+    path('profile/goal/', GoalTypeUpdateView.as_view(), name='set-goal-weight'),
+    path('profile/update_weight_goal/', WeightGoalUpdateView.as_view(), name='set-weight-goal'),
+    path('login/', views.login_user, name='login_user'),
 ]

@@ -1,51 +1,35 @@
 from django.db import models
-from authentication.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from django.core.validators import MinValueValidator
-from django.conf import settings
-from django.utils import timezone
-
-GENDER_CHOICES = [
-    ('male', 'Male'),
-    ('female', 'Female'),
-    ('other', 'Other'),
-]
-
-ACTIVITY_LEVEL_CHOICES = [
-    ('low', 'Low'),
-    ('medium', 'Medium'),
-    ('high', 'High'),
-]
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
+    """
+    Additional profile information for users
+    """
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    current_weight = models.FloatField(null=True, blank=True, validators=[MinValueValidator(0)])
+    goal_weight = models.FloatField(null=True, blank=True, validators=[MinValueValidator(0)])
+    daily_calorie_goal = models.PositiveIntegerField(null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    bio = models.TextField(blank=True)
+
+    GENDER_CHOICES = [
+        ('male', 'Male'),
+        ('female', 'Female'),
+    ]
     
-    # Username now lives here
-    username = models.CharField(max_length=150, unique=True)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='Male')
+    profile_picture = models.ImageField(upload_to="profile_icon/", null=True, blank=True)
 
-    # Personal info
-    date_of_birth = models.DateField(null=True, blank=True)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True, blank=True)
-
-    # Physical data
-    weight = models.FloatField(null=True, blank=True)  # in kg
-    height = models.FloatField(null=True, blank=True)  # in cm
-
-    # Goals
-    goal = models.TextField(null=True, blank=True)
-    target_weight = models.FloatField(null=True, blank=True)
-    activity_level = models.CharField(max_length=10, choices=ACTIVITY_LEVEL_CHOICES, null=True, blank=True)
-
-    # Permissions
-    step_tracking_permission = models.BooleanField(default=False)
-
-    # Gamified/Progress fields
-    xp = models.IntegerField(default=0)
-    level = models.IntegerField(default=1)
-    join_date = models.DateTimeField(default=timezone.now)
-
+    def get_profile_picture_url(self):
+        if self.profile_picture:
+            return self.profile_picture.url
+        return f"/media/profile_icon/default/{self.gender}_default.png"  # Use default profile icons
+    
     def __str__(self):
-        return self.username or self.user.email
-        
+        return f"{self.user.username}'s Profile"
+    
 class UserFriend(models.Model):
     """
     Tracks user's friend relationships

@@ -4,7 +4,7 @@ from .models import *
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = '__all__'
+        fields = ['current_weight', 'daily_calorie_goal', 'gender', 'bio']
 
 class UserFriendSerializer(serializers.ModelSerializer):
     class Meta:
