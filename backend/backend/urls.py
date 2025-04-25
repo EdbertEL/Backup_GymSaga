@@ -1,13 +1,8 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-<<<<<<< HEAD
-from django.contrib import admin  
-=======
 from django.contrib import admin
-
 from authentication.views import EmailLoginView, GoogleLoginView
->>>>>>> 0476b3c (backend register login + google)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

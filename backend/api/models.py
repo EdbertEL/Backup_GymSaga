@@ -8,23 +8,17 @@ class UserProfile(models.Model):
     Additional profile information for users
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 67d92fc (Registrasi)
     current_weight = models.FloatField(null=True, blank=True, validators=[MinValueValidator(0)])
     goal_weight = models.FloatField(null=True, blank=True, validators=[MinValueValidator(0)])
     daily_calorie_goal = models.PositiveIntegerField(null=True, blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     bio = models.TextField(blank=True)
-<<<<<<< HEAD
-=======
     name = models.TextField(blank=True)
     current_level = models.PositiveIntegerField(default=1)
     current_xp = models.PositiveIntegerField(default=0)
     friend_uid = models.CharField(max_length=255, blank=True, null=True, unique=True)
->>>>>>> 67d92fc (Registrasi)
 
     GENDER_CHOICES = [
         ('male', 'Male'),

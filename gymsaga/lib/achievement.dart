@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'achievement2.dart';
-import 'achievement3.dart';
+// import 'achievement2.dart';
+// import 'achievement3.dart';
 
 class AchievementScreen extends StatelessWidget {
   const AchievementScreen({Key? key}) : super(key: key);
@@ -111,16 +111,16 @@ class AchievementScreen extends StatelessWidget {
       children: [
         _buildCategoryTab("Bronze", true, () {}),
         _buildCategoryTab("Silver", false, () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const Achievement2Screen()),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => const Achievement2Screen()),
+          // );
         }),
         _buildCategoryTab("Gold", false, () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const Achievement3Screen()),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => const Achievement3Screen()),
+          // );
         }),
       ],
     );

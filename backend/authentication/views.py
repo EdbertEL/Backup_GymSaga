@@ -1,11 +1,6 @@
 import firebase_admin
 from firebase_admin import auth
 from rest_framework import viewsets
-<<<<<<< HEAD
-from rest_framework.permissions import IsAuthenticated
-from .models import User
-from .serializers import UserSerializer
-=======
 from .serializers import (
     UserSerializer
     )
@@ -14,20 +9,17 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import authenticate
 from authentication.models import User
->>>>>>> 0476b3c (backend register login + google)
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-<<<<<<< HEAD
     def partial_update(self, request, *args, **kwargs):
         instance = self.get_object()
         if 'username' in request.data:
             instance.username = request.data['username']
             instance.save()
         return super().partial_update(request, *args, **kwargs)
-=======
 class EmailLoginView(APIView):
     def post(self, request):
         username = request.data.get('username')
@@ -68,4 +60,3 @@ class GoogleLoginView(APIView):
             })
         except Exception as e:
             return Response({'error': str(e)}, status=400)
->>>>>>> 0476b3c (backend register login + google)

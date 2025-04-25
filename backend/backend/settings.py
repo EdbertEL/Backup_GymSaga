@@ -25,11 +25,7 @@ SECRET_KEY = 'django-insecure-u^0x5ji5for6+01)u1y0gc83vts*u*gi_o$4206e_k%g3#a(*-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['*']
-=======
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '10.0.2.2', '192.168.1.14']  # Ganti x dengan IP kamu
->>>>>>> 0476b3c (backend register login + google)
 
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -49,11 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 0476b3c (backend register login + google)
     'api',
     'authentication',
     'rest_framework',

@@ -8,7 +8,7 @@ import 'package:gymsaga/homepage.dart';
 import 'package:gymsaga/steps.dart';
 import 'package:gymsaga/workout.dart';
 import 'firebase_options.dart';
-import 'loadingpage.dart';
+// import 'loadingpage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
